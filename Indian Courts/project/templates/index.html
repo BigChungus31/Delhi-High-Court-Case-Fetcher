@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Data Fetcher - Delhi High Court</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Court Data Fetcher</h1>
+            <p class="subtitle">Delhi High Court Case Information System</p>
+        </header>
+
+        <main>
+            <!-- Search Form -->
+            <div class="card">
+                <h2>Search Case Information</h2>
+                <form id="searchForm">
+                    <div class="form-group">
+                        <label for="caseType">Case Type:</label>
+                        <select id="caseType" name="case_type" required>
+                            <option value="">Select Case Type</option>
+                            <option value="WP">WP - Writ Petition</option>
+                            <option value="CRL">CRL - Criminal</option>
+                            <option value="CS">CS - Civil Suit</option>
+                            <option value="FAO">FAO - First Appeal from Order</option>
+                            <option value="CRL.A">CRL.A - Criminal Appeal</option>
+                            <option value="CRL.REV">CRL.REV - Criminal Revision</option>
+                            <option value="CM">CM - Civil Miscellaneous</option>
+                            <option value="W.P.(C)">W.P.(C) - Writ Petition (Civil)</option>
+                            <option value="CRL.M.C">CRL.M.C - Criminal Misc Case</option>
+                            <option value="BAIL">BAIL - Bail Application</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="caseNumber">Case Number:</label>
+                        <input type="text" id="caseNumber" name="case_number" required 
+                               placeholder="Enter case number (e.g., 1234, 567/2023)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filingYear">Filing Year:</label>
+                        <select id="filingYear" name="filing_year" required>
+                            <option value="">Select Year</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="captchaGroup" style="display: none;">
+                        <label for="captcha">CAPTCHA:</label>
+                        <input type="text" id="captcha" name="captcha" 
+                               placeholder="Enter CAPTCHA if required">
+                        <p class="help-text">CAPTCHA will be shown if required by the court website</p>
+                    </div>
+
+                    <button type="submit" id="searchBtn" class="btn btn-primary">
+                        <span id="searchBtnText">Search Case</span>
+                        <span id="searchBtnLoader" class="loader" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Error Messages -->
+            <div id="errorContainer" class="alert alert-error" style="display: none;">
+                <span id="errorMessage"></span>
+            </div>
+
+            <!-- Results Container -->
+            <div id="resultsContainer" class="card" style="display: none;">
+                <h2>Case Information</h2>
+                
+                <div class="case-info">
+                    <div class="info-row">
+                        <span class="label">Parties:</span>
+                        <span id="parties" class="value">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="label">Filing Date:</span>
+                        <span id="filingDate" class="value">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="label">Next Hearing:</span>
+                        <span id="hearingDate" class="value">-</span>
+                    </div>
+                </div>
+
+                <div id="pdfLinksContainer" style="display: none;">
+                    <h3>Available Documents</h3>
+                    <div id="pdfLinks" class="pdf-links">
+                        <!-- PDF links will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Court Data Fetcher. Built for educational purposes.</p>
+            <p><strong>Disclaimer:</strong> This tool fetches publicly available information from court websites. Always verify information from official sources.</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
